@@ -28,6 +28,9 @@ it is used to analyse the Logs
 Object Logs are stored by cloud Trail
 Bucket Logs are stored By server Logs 
 
+encryption can be done by using Two Ways 
+1.In Transit 
+2.At Rest 
 
  
 
