@@ -1,0 +1,56 @@
+38
+ 
+storage classes 
+-------------------------
+1.standard frequently access: it is used for freqent access .in this data is critical.
+2.standard infreqently access: in this data is accessed not frequently 
+3.freqently accessed but the data is not critical in this the price is less compared to Sra.reduced redunacancy stotage(RRS)
+4.Infrequently accessed but the data is not Critical for that we use 1 zone ia 
+5.Inteligent tier : in this the customer uses unknown access tier 
+6.S3 Glaciar : Data is not retrieved Regularly once in a Year he will access the data.Glaciar is not frequently used.in glaciar we will create Vault.in this we will archieve the files in zip format.the zip file size is 40TB.we can have unlimited number of archieves.
+7.Deep Glaciar : we do not access the data any time just upload and forget.
+
+There are two types of buckets
+1.general purpose buckets these 7 comes under General purpose buckets 
+2.Directory Bucket : in these Express buckets are used 
+
+Lifecycle Management (LCM)
+---------------------------------------------
+It will help to move object from one storage class to another storage class Automatically 
+we can do this by doing LCM Rules 
+
+we can create LCM rule for bucket and also we can create it for Subfolder also
+
+ Athena 
+--------------------------------
+This is used mostly by the Developers 
+it is used to analyse the Logs 
+Object Logs are stored by cloud Trail
+Bucket Logs are stored By server Logs 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

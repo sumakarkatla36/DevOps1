@@ -1,0 +1,215 @@
+1.create 2 servers in that install v1 application name it as Blue server
+2.create another servers intsall v2 application name it as Greenserver
+3.attach all these servers to the Load Balancer
+4.we need to change the rules of the Load Balancer Percentages from Blue to Green 
+5.Launch an Instance name it as Blue server 1
+  Select RedHat t3.micro
+  Select a Key pair
+  in the network settings Select default Vpc  Subnet Region as 1a and Firewall security as Default 
+  In The Advanced settings select the User Data as 
+
+#!/bin/bash
+
+sudo yum install -y httpd
+
+sudo mkdir -p /var/www/html
+
+sudo tee /var/www/html/index.html > /dev/null <<'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Website</title>
+</head>
+<body style="background-color:lightblue;text-align:center;padding:100px;font-family:Arial;">
+
+    <h1>WELCOME TO MY WEBSITE</h1>
+    <h2>Apache Server is Working!</h2>
+    <p>Congratulations! Your website is successfully running.</p>
+
+</body>
+</html>
+EOF
+
+sudo systemctl enable httpd
+sudo systemctl restart httpd
+
+echo "Website deployment completed!"
+
+  in the Given EC2 intance enable HTTP Protocol port number 80 
+
+create the Green server 3 and 4 with the Given Code
+
+
+#!/bin/bash
+
+sudo yum install -y httpd
+
+sudo mkdir -p /var/www/html
+
+sudo tee /var/www/html/index.html > /dev/null <<'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Website</title>
+</head>
+<body style="background-color:lightgreen;text-align:center;padding:100px;font-family:Arial;">
+
+    <h1>WELCOME TO MY WEBSITE</h1>
+    <h2>Apache Server is Working!</h2>
+    <p>Congratulations! Your website is successfully running.</p>
+
+</body>
+</html>
+EOF
+
+sudo systemctl enable httpd
+sudo systemctl restart httpd
+
+echo "Website deployment completed!"
+
+then Next goto Target Groups
+Create Target group 
+select Instances and Give the Target Group Name as BlueTarget
+Select Protocol as HTTP and Porrt Number as 80
+select the Ip address as IPV4
+select the VPC as Default Vpc 
+select the Protocol Version as HTTP1
+select the Health check path as /index.html
+click on Next
+select the Blue Target Groups 
+click on including as Pending Below 
+click on Create target group
+
+Next we need to Create a Load Balancer 
+Create a Load Balancer 
+Select application Load Balanecer
+Load Balancer name as Myelb 
+select the scheme as Internet Facing and the ip address as ipv4
+Vpc as Default Vpc 
+select the Availability zones as 1a and 1b 
+security Group as Practice SG
+Select the Listeners and routing as HTTP And Default action as BlueTG
+Then Click on Create TG 
+
+Create the Ec2 instance Green 4 and Green 4 Instances using Launch more Like This 
+go to actions and select imagee and temnpletes and select Launch More Like This 
+
+and Launch the ec2 instances 
+
+we need to create another Traget Group Named GreenTG 
+select instances
+Name the Target group as GreenTG
+select Protocol Version as HTTP1 
+Health check path as /index.html 
+click on next and select the Green EC2 instances and Create the Target Group 
+
+   
+Next goto Load Balancer click on Listeners and Rules |
+
+click on edit rule
+in Default Action Click on Forward to the Target Groups
+Click on add Target Group select the Green Target Group 
+Make the weightage of the Green Target Group to 100 Percentage 
+
+
+  S3 simple storge service 
+------------------------------------
+ S3 is Regional 
+S3 is Object Based Storage
+S3 we can store Flat files
+we cannot execute and Install anything in the S3 
+S3 is unlimited storage 
+S3 is serverless
+S3 is Object Based storage 
+Bucket is a Container of Objects 
+Object is a file 
+Bucket is Nothing But Folder 
+
+Name of the Bucket should be Unique 
+By default Bucket is private 
+
+S3 is mainly used for Read purpose
+
+There are 2 types of Buckets 
+General purpose Bucket 
+Directory Bucket 
+
+directory Buckets will Have high Performance
+
+we will use General Purpose Buckets 
+
+for static web hosting we can use S3 
+
+By Default Buckeets are Private we can make it public using acl access control list 
+
+ARN = AMAZON RESOURCE NAME 
+
+VERSIONING 
+------------------------
+we can enable versioning if any of the files is deleted we can restore it Back
+By default versioning is Disabled
+Versioning is enabled on Bucket Level
+Delete the Delete marker to get the latest version applied
+if we want the Particular version to be Restored then we need to download the file and upload it back 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
